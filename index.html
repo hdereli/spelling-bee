@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spelling Bee</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── Start Screen ── -->
+    <div id="screen-start" class="screen active">
+      <div class="card">
+        <div class="bee-icon">🐝</div>
+        <h1>Spelling Bee</h1>
+        <p class="subtitle">
+          Listen carefully and spell the word correctly.<br />You have
+          <strong>60 seconds</strong> per word.
+        </p>
+
+        <label class="option-toggle">
+          <input type="checkbox" id="opt-show-word" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          Show correct spelling after a wrong answer
+        </label>
+
+        <label class="option-toggle">
+          <input type="checkbox" id="opt-no-timer" checked />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          No time limit
+        </label>
+
+        <button id="btn-start" class="btn btn-primary">Start Game</button>
+      </div>
+    </div>
+
+    <!-- ── Game Screen ── -->
+    <div id="screen-game" class="screen">
+      <div class="card">
+        <div class="progress-label">
+          Word <span id="word-index">1</span> of <span id="word-total"></span>
+        </div>
+
+        <!-- Circular countdown timer -->
+        <div class="timer-wrap">
+          <svg class="timer-svg" viewBox="0 0 100 100">
+            <circle class="timer-bg" cx="50" cy="50" r="44" />
+            <circle id="timer-ring" class="timer-ring" cx="50" cy="50" r="44" />
+          </svg>
+          <span id="timer-count" class="timer-count">60</span>
+        </div>
+
+        <p class="instruction">Listen, then type the word below.</p>
+
+        <div class="input-row">
+          <input
+            id="answer-input"
+            class="answer-input"
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Type your answer…"
+          />
+        </div>
+
+        <div class="btn-row">
+          <button id="btn-hear" class="btn btn-secondary">🔊 Hear Again</button>
+          <button id="btn-submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="btn-row-finish">
+          <button id="btn-finish" class="btn btn-finish">Finish Game</button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+
+        <!-- Shown for 5 s after a wrong answer when option is on -->
+        <div id="reveal-banner" class="reveal-banner hidden">
+          <p class="reveal-label">The correct spelling was:</p>
+          <p id="reveal-word" class="reveal-word"></p>
+          <p id="reveal-countdown" class="reveal-countdown"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Results Screen ── -->
+    <div id="screen-results" class="screen">
+      <div class="card">
+        <div class="bee-icon">🐝</div>
+        <h2>Game Over!</h2>
+        <div id="score-display" class="score-display"></div>
+        <p id="score-sub" class="score-sub"></p>
+        <p id="score-message" class="score-message"></p>
+        <button id="btn-play-again" class="btn btn-primary">Play Again</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
